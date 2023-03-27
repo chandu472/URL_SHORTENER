@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>URL Shortener</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: #f8fbfd;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+      table {
+        margin: 50px auto;
+        width: 80%;
+        border-collapse: collapse;
+      }
+      th {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        padding: 10px;
+      }
+      td {
+        border: 1px solid #ccc;
+        text-align: center;
+        padding: 10px;
+      }
+      td a {
+        text-decoration: none;
+      }
+      td a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>URL Shortener</h1>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Original URL</th>
+            <th>Shortened URL</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for url in urls %}
+          <tr>
+            <td>{{ url.original_url }}</td>
+            <td><a href="{{ url_for('redirect_url', short_url=url.short_url) }}">{{ url.short_url }}</a></td>
+            <td>{{ url.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
